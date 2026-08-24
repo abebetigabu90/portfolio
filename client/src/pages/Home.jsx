@@ -12,7 +12,7 @@ function Home(){
         <Hero/>
         <About/>
         <Projects/>
-        <AdminProjects/>
+        {/* <AdminProjects/> */}
         {/* <CreateProject/> */}
         </>
     )
