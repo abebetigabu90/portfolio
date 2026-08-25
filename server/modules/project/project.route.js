@@ -6,11 +6,22 @@ import {
   deleteProject,
   
 } from "./project.controller.js";
-
+import { protectAdmin } from "../../middleware/authMiddleware.js";
 const router = express.Router();
 
+// router.get("/", getProjects);
+// router.post("/",protectAdmin, createProject);
+// router.put("/:id",protectAdmin, updateProject);
+// router.delete("/:id",protectAdmin, deleteProject);
+
+
+// Public
 router.get("/", getProjects);
-router.post("/", createProject);
-router.put("/:id", updateProject);
-router.delete("/:id", deleteProject);
+
+// Admin only
+router.post("/", protectAdmin, createProject);
+
+router.put("/:id", protectAdmin, updateProject);
+
+router.delete("/:id", protectAdmin, deleteProject);
 export default router;
