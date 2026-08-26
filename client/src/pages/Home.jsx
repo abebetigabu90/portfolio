@@ -3,6 +3,7 @@ import Navbar from "../components/Navbar/Navbar"
 import About from "../components/About/About"
 import Projects from "../components/Projects/Projects"
 import AdminProjects from "./admin/AdminProjects";
+import Skills from "../components/Skills/skills";
 // import CreateProject from "../components/Projects/createProject"
 
 function Home(){
@@ -22,6 +23,7 @@ return (
       <Navbar />
       <main>
         <Hero/>
+        <Skills/>
         <About />
         <Projects />
       </main>
