@@ -1,12 +1,18 @@
+// 
+
+
+
 import mongoose from "mongoose"
-const connectDB = async()=>{
-    try{
-            await mongoose.connect("mongodb://127.0.0.1:27017/portfolio")
-            console.log("mongodb connected")
+import "dotenv/config"
+
+const connectDB = async () => {
+    try {
+        await mongoose.connect(process.env.MONGO_URI)
+        console.log("MongoDB connected successfully")
+    } catch (error) {
+        console.error("MongoDB connection error:", error.message)
+        process.exit(1)
     }
-catch(error){
-    console.error(error.message)
 }
 
-}
 export default connectDB
