@@ -48,19 +48,38 @@ export const createContact = async (contactData) => {
 // Update contact information
 // --------------------------------------------------
 
+// export const updateContact = async (contactData) => {
+//   const contact = await Contact.findOneAndUpdate(
+//     {},
+//     contactData,
+//     {
+//       new: true,
+//       runValidators: true,
+//     }
+//   );
+
+//   if (!contact) {
+//     throw new Error("Contact information not found.");
+//   }
+
+//   return contact;
+// };
+
+// --------------------------------------------------
+// Update contact information
+// --------------------------------------------------
+
 export const updateContact = async (contactData) => {
   const contact = await Contact.findOneAndUpdate(
     {},
     contactData,
     {
-      new: true,
+      returnDocument: "after",
       runValidators: true,
+      upsert: true,
+      setDefaultsOnInsert: true,
     }
   );
-
-  if (!contact) {
-    throw new Error("Contact information not found.");
-  }
 
   return contact;
 };
