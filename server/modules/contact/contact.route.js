@@ -74,7 +74,7 @@ import {
   deleteContactController,
 } from "./contact.controller.js";
 
-import { protectAdmin } from "../../middleware/authmiddleware.js";
+import { protectAdmin } from "../../middleware/authMiddleware.js";
 
 const router = express.Router();
 
