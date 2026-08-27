@@ -128,6 +128,9 @@ const ContactItem = ({
 
 export default function Contact() {
 
+    // Access Vite environment variable with fallback to localhost for safety
+  const API_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000"
+  const BASE_URL = `${API_URL}/api/contact`
   const [contact, setContact] = useState(null);
 
   const [loading, setLoading] = useState(true);
@@ -149,7 +152,7 @@ export default function Contact() {
         setError("");
 
         const response = await axios.get(
-          "http://localhost:5000/api/contact"
+          BASE_URL
         );
         console.log(response)
 

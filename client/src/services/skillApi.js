@@ -1,7 +1,9 @@
 import axios from "axios";
 
-const BASE_URL = "http://localhost:5000/api/skills";
-
+// const BASE_URL = "http://localhost:5000/api/skills";
+// Access Vite environment variable with fallback to localhost for safety
+const API_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000"
+const BASE_URL = `${API_URL}/api/skills`
 // Public
 export const getSkills = async () => {
   const response = await axios.get(BASE_URL);

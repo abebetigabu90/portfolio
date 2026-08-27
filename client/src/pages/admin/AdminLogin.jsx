@@ -3,6 +3,9 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 function AdminLogin() {
+    // Access Vite environment variable with fallback to localhost for safety
+  const API_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000"
+  const BASE_URL = `${API_URL}/api/auth/login`
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -28,7 +31,7 @@ function AdminLogin() {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/auth/login",
+        BASE_URL,
         formData
       );
 

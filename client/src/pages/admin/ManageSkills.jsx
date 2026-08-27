@@ -198,6 +198,9 @@ const getProficiencyStyle = (proficiency) => {
 // --------------------------------------------------
 
 function ManageSkills() {
+    // Access Vite environment variable with fallback to localhost for safety
+  const API_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000"
+  const BASE_URL = `${API_URL}/api/skills`
   const navigate = useNavigate();
 
   const [skills, setSkills] = useState([]);
@@ -233,7 +236,7 @@ function ManageSkills() {
       }
 
       const response = await axios.get(
-        "http://localhost:5000/api/skills",
+        BASE_URL,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -358,7 +361,7 @@ function ManageSkills() {
       const token = localStorage.getItem("adminToken");
 
       await axios.put(
-        `http://localhost:5000/api/skills/${editingSkill._id}`,
+        `${BASE_URL}/${editingSkill._id}`,
         {
           name: editingSkill.name.trim(),
           category: editingSkill.category,
@@ -415,7 +418,7 @@ function ManageSkills() {
       const token = localStorage.getItem("adminToken");
 
       await axios.delete(
-        `http://localhost:5000/api/skills/${deleteSkill._id}`,
+        `${BASE_URL}/${deleteSkill._id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -465,7 +468,7 @@ function ManageSkills() {
       };
 
       await axios.put(
-        `http://localhost:5000/api/skills/${skill._id}`,
+        `${BASE_URL}/${skill._id}`,
         {
           name: skill.name,
           category: skill.category,

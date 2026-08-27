@@ -15,7 +15,9 @@ import {
   Briefcase,
 } from "lucide-react";
 
-
+    // Access Vite environment variable with fallback to localhost for safety
+  const API_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000"
+  const BASE_URL = `${API_URL}/api/contact`
 function ManageContact() {
   const navigate = useNavigate();
 
@@ -67,7 +69,7 @@ function ManageContact() {
         }
 
         const response = await axios.get(
-          "http://localhost:5000/api/contact/admin",
+          `${BASE_URL}/admin`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -178,7 +180,7 @@ function ManageContact() {
       }
 
       await axios.put(
-        "http://localhost:5000/api/contact",
+        BASE_URL,
         formData,
         {
           headers: {

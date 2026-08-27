@@ -1,32 +1,52 @@
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
 import Admin from "../features/auth/auth.model.js";
+import dotenv from "dotenv";
+import path from "path";
+import { fileURLToPath } from "url";
 
-// MongoDB connection
-const MONGO_URI = "mongodb://127.0.0.1:27017/portfolio";
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-// Admin credentials
-const adminEmail = "admin@example.com";
-const adminPassword = "123456";
+dotenv.config({
+  path: path.join(__dirname, "../.env"),
+});
 
 const seedAdmin = async () => {
   try {
-    // Connect to MongoDB
+    const MONGO_URI = process.env.MONGO_URI;
+
+    if (!MONGO_URI) {
+      throw new Error("MONGO_URI is not defined in .env");
+    }
+
+    const adminEmail = process.env.ADMIN_EMAIL;
+    const adminPassword = process.env.ADMIN_PASSWORD;
+
+    if (!adminEmail || !adminPassword) {
+      throw new Error(
+        "ADMIN_EMAIL or ADMIN_PASSWORD is not defined in .env"
+      );
+    }
+
     await mongoose.connect(MONGO_URI);
+
     console.log("MongoDB connected");
 
-    // Check if admin already exists
-    const existingAdmin = await Admin.findOne({ email: adminEmail });
+    const existingAdmin = await Admin.findOne({
+      email: adminEmail,
+    });
 
     if (existingAdmin) {
       console.log("Admin already exists");
       return;
     }
 
-    // Hash password
-    const hashedPassword = await bcrypt.hash(adminPassword, 10);
+    const hashedPassword = await bcrypt.hash(
+      adminPassword,
+      10
+    );
 
-    // Create admin
     const admin = await Admin.create({
       email: adminEmail,
       password: hashedPassword,
@@ -34,11 +54,9 @@ const seedAdmin = async () => {
 
     console.log("Admin created successfully");
     console.log("Email:", admin.email);
-    console.log("Password:", adminPassword);
   } catch (error) {
     console.error("Error seeding admin:", error);
   } finally {
-    // Close MongoDB connection
     await mongoose.connection.close();
     console.log("MongoDB connection closed");
   }
