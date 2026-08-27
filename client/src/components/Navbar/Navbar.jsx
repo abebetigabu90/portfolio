@@ -106,12 +106,20 @@ export default function Navbar() {
 
             {/* Desktop Action Button - CV */}
             <div className="hidden md:flex items-center">
-              <a
+              {/* <a
                 href="/Abebe-Tigabu-CV.pdf"
                 download
                 className="px-4 py-2 text-sm font-medium text-white bg-gradient-to-r from-blue-600 to-purple-600 rounded-full shadow-md shadow-blue-900/20 hover:shadow-lg hover:shadow-blue-900/30 hover:opacity-95 transition-all duration-200 flex items-center gap-2"
               >
                 <span>Download CV</span>
+              </a> */}
+              <a
+                href="/Abebe-Tigabu-CV.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="your-button-styles"
+              >
+                Download CV
               </a>
             </div>
 
