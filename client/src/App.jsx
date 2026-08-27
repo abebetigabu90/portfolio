@@ -2,7 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home"
 import AdminProjects from "./pages/admin/AdminProjects"
 import AdminLogin from "./pages/admin/AdminLogin"
-import AdminDashboard from "./pages/admin/adminDashboard"
+import AdminDashboard from "./pages/admin/AdminDashboard"
 import CreateSkill from "./pages/admin/CreateSkill"
 import ManageSkills from "./pages/admin/ManageSkills" 
 import ManageContact from "./pages/admin/ManageContact"
